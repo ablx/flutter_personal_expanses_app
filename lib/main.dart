@@ -13,6 +13,17 @@ class MyApp extends StatelessWidget {
         title: 'Personal Expenses',
         home: MyHomePage(),
         theme: ThemeData(
+            fontFamily: 'Quicksand',
+            textTheme: TextTheme(
+                headline6: TextStyle(
+                    fontFamily: 'OpenSans',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18)),
+            appBarTheme: AppBarTheme(
+                titleTextStyle: TextStyle(
+                    fontFamily: 'OpenSans',
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold)),
             colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.teal)));
   }
 }
