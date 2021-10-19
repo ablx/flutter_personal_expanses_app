@@ -52,7 +52,8 @@ flutter:
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
 
-
+  assets:
+    - assets/images/waiting.png
 
 
   # To add custom fonts to your application, add a fonts section here,
