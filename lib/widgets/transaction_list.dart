@@ -31,10 +31,10 @@ class TransactionList extends StatelessWidget {
           : ListView.builder(
               itemBuilder: (ctx, index) {
                 return Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 0),
+                  padding: EdgeInsets.symmetric(vertical: 2, horizontal: 0),
                   child: Card(
-                    margin: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
-                    elevation: 3,
+                    margin: EdgeInsets.symmetric(vertical: 2, horizontal: 2),
+                    elevation: 1,
                     child: ListTile(
                       leading: CircleAvatar(
                         radius: 30,
