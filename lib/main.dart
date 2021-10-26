@@ -51,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
       date: DateTime.now(),
     ),
     Transaction(
-      id: 't2',
+      id: 't3',
       title: 'Old Groceries',
       amount: 6.53,
       date: DateTime.now().subtract(Duration(days: 8)),
@@ -63,6 +63,12 @@ class _MyHomePageState extends State<MyHomePage> {
         .where(
             (e) => e.date.isAfter(DateTime.now().subtract(Duration(days: 7))))
         .toList();
+  }
+
+  void _deleteTransaction(String id) {
+    setState(() {
+      _userTransactions.removeWhere((element) => element.id == id);
+    });
   }
 
   void _addNewTransaction(String txTitle, double txAmount, DateTime date) {
@@ -111,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
               width: double.infinity,
               child: Chart(_recentTransactions),
             ),
-            TransactionList(_userTransactions),
+            TransactionList(_userTransactions, _deleteTransaction),
           ],
         ),
       ),
