@@ -9,36 +9,40 @@ class ChartBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-            height: 20,
-            child: FittedBox(
-                child: Text('\$${spendingAmount.toStringAsFixed(0)}'))),
-        SizedBox(height: 4),
-        Container(
-          height: 60,
-          width: 10,
-          child: Stack(children: [
-            Container(
-              decoration: BoxDecoration(
-                  color: Color.fromRGBO(222, 222, 222, 1),
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.grey, width: 1)),
-            ),
-            FractionallySizedBox(
-              heightFactor: spendingPctOfTotal,
-              child: Container(
+    return LayoutBuilder(builder: (ctx, constraint) {
+      return Column(
+        children: [
+          Container(
+              height: constraint.maxHeight * 0.15,
+              child: FittedBox(
+                  child: Text('\$${spendingAmount.toStringAsFixed(0)}'))),
+          SizedBox(height: 4),
+          Container(
+            height: constraint.maxHeight * 0.5,
+            width: 10,
+            child: Stack(children: [
+              Container(
                 decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    borderRadius: BorderRadius.circular(10)),
+                    color: Theme.of(context).colorScheme.primary,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                        color: Theme.of(context).colorScheme.secondaryVariant,
+                        width: 1)),
               ),
-            )
-          ]),
-        ),
-        SizedBox(height: 4),
-        Text(label),
-      ],
-    );
+              FractionallySizedBox(
+                heightFactor: spendingPctOfTotal,
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.grey,
+                      borderRadius: BorderRadius.circular(10)),
+                ),
+              )
+            ]),
+          ),
+          SizedBox(height: 4),
+          Container(height: constraint.maxHeight * 0.15, child: Text(label)),
+        ],
+      );
+    });
   }
 }
