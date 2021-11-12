@@ -30,52 +30,58 @@ class _NewTransactionState extends State<NewTransaction> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: Container(
-        padding: EdgeInsets.all(10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: <Widget>[
-            TextField(
-              decoration: InputDecoration(labelText: 'Title'),
-              controller: _titleController,
-              onSubmitted: (_) => submitData(),
-              // onChanged: (val) {
-              //   titleInput = val;
-              // },
-            ),
-            TextField(
-              decoration: InputDecoration(labelText: 'Amount'),
-              controller: _amountController,
-              keyboardType: TextInputType.number,
-              onSubmitted: (_) => submitData(),
-              // onChanged: (val) => amountInput = val,
-            ),
-            Container(
-              height: 70,
-              child: Row(
-                children: [
-                  Text(_selectedDate == null
-                      ? 'No Date chosen.'
-                      : DateFormat.yMMMd().format(_selectedDate)),
-                  FlatButton(
-                    onPressed: () => _openDatePicker(context),
-                    child: Text('Choose date',
-                        style: TextStyle(fontWeight: FontWeight.bold)),
-                    textColor: Theme.of(context).colorScheme.secondary,
-                  )
-                ],
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 5,
+        child: Container(
+          padding: EdgeInsets.only(
+              top: 10,
+              left: 10,
+              right: 10,
+              bottom: MediaQuery.of(context).viewInsets.bottom + 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              TextField(
+                decoration: InputDecoration(labelText: 'Title'),
+                controller: _titleController,
+                onSubmitted: (_) => submitData(),
+                // onChanged: (val) {
+                //   titleInput = val;
+                // },
               ),
-            ),
-            RaisedButton(
-              child: Text('Add Transaction'),
-              textColor:
-                  Theme.of(context).buttonTheme.colorScheme.primaryVariant,
-              color: Theme.of(context).buttonTheme.colorScheme.background,
-              onPressed: submitData,
-            ),
-          ],
+              TextField(
+                decoration: InputDecoration(labelText: 'Amount'),
+                controller: _amountController,
+                keyboardType: TextInputType.number,
+                onSubmitted: (_) => submitData(),
+                // onChanged: (val) => amountInput = val,
+              ),
+              Container(
+                height: 70,
+                child: Row(
+                  children: [
+                    Text(_selectedDate == null
+                        ? 'No Date chosen.'
+                        : DateFormat.yMMMd().format(_selectedDate)),
+                    FlatButton(
+                      onPressed: () => _openDatePicker(context),
+                      child: Text('Choose date',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      textColor: Theme.of(context).colorScheme.secondary,
+                    )
+                  ],
+                ),
+              ),
+              RaisedButton(
+                child: Text('Add Transaction'),
+                textColor:
+                    Theme.of(context).buttonTheme.colorScheme.primaryVariant,
+                color: Theme.of(context).buttonTheme.colorScheme.background,
+                onPressed: submitData,
+              ),
+            ],
+          ),
         ),
       ),
     );

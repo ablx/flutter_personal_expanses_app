@@ -31,6 +31,7 @@ class TransactionList extends StatelessWidget {
           })
         : ListView.builder(
             itemBuilder: (ctx, index) {
+              var mediaQueryData = MediaQuery.of(context);
               return Padding(
                 padding: EdgeInsets.symmetric(vertical: 2, horizontal: 0),
                 child: Card(
@@ -51,13 +52,23 @@ class TransactionList extends StatelessWidget {
                     ),
                     subtitle: Text(
                         DateFormat.yMMMd().format(transactions[index].date)),
-                    trailing: IconButton(
-                      icon: Icon(Icons.delete,
-                          color:
-                              Theme.of(context).colorScheme.secondaryVariant),
-                      onPressed: () =>
-                          _deleteTransaction(transactions[index].id),
-                    ),
+                    trailing: mediaQueryData.size.width > 400
+                        ? FlatButton.icon(
+                            onPressed: () =>
+                                _deleteTransaction(transactions[index].id),
+                            icon: Icon(Icons.delete,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .secondaryVariant),
+                            label: Text("Delete"))
+                        : IconButton(
+                            icon: Icon(Icons.delete,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .secondaryVariant),
+                            onPressed: () =>
+                                _deleteTransaction(transactions[index].id),
+                          ),
                   ),
                 ),
               );
